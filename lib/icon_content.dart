@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-const cardLabelStyle = TextStyle(
-  fontSize: 18.0,
-  color: Color(0xFF8D8E98),
-);
+import 'constant.dart';
 
 class IconContent extends StatelessWidget {
   IconContent({@required this.cardLabel, @required this.cardIcon});
@@ -24,7 +21,7 @@ class IconContent extends StatelessWidget {
         ),
         Text(
           cardLabel,
-          style: cardLabelStyle,
+          style: kCardLabelStyle,
         ),
       ],
     );

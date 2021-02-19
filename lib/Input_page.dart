@@ -1,14 +1,11 @@
 import 'package:bmi_calculator/reusable_card.dart';
+import 'package:bmi_calculator/rounded_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constant.dart';
 import 'icon_content.dart';
-
-const BottomContainerHeight = 80.0;
-const ReusableActiveCardColor = Color(0xFF1D1E33);
-const ReusableInactiveleCardColor = Color(0xFF111328);
-const BottomContainerColor = Color(0xFFEB1555);
 
 enum GenderType { male, female }
 
@@ -18,7 +15,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  int height = 180;
   GenderType selectedGender;
+  int weight = 60;
+  int age = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -41,8 +42,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == GenderType.male
-                        ? ReusableActiveCardColor
-                        : ReusableInactiveleCardColor,
+                        ? kReusableActiveCardColor
+                        : kReusableInactiveleCardColor,
                     cardChild: IconContent(
                       cardIcon: FontAwesomeIcons.male,
                       cardLabel: 'MALE',
@@ -57,8 +58,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     colour: selectedGender == GenderType.female
-                        ? ReusableActiveCardColor
-                        : ReusableInactiveleCardColor,
+                        ? kReusableActiveCardColor
+                        : kReusableInactiveleCardColor,
                     cardChild: IconContent(
                       cardIcon: FontAwesomeIcons.female,
                       cardLabel: 'FEMALE',
@@ -70,7 +71,52 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: ReusableActiveCardColor,
+              colour: kReusableActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "HEIGHT",
+                    style: kCardLabelStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kCardLabelStyle,
+                      )
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: kSliderActiveColor,
+                      inactiveTrackColor: kSliderInActiveColor,
+                      thumbColor: kThumbColor,
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 24.0),
+                      overlayColor: kOverlayColor,
+                    ),
+                    child: Slider(
+                        value: height.toDouble(),
+                        max: kmaxHeight,
+                        min: kminHeight,
+                        onChanged: (double newHight) {
+                          setState(() {
+                            height = newHight.round();
+                          });
+                        }),
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -78,12 +124,86 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    colour: ReusableActiveCardColor,
+                    colour: kReusableActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: kCardLabelStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              updateWeight: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              updateWeight: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: ReusableActiveCardColor,
+                    colour: kReusableActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'AGE',
+                          style: kCardLabelStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              updateWeight: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundedIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              updateWeight: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -91,9 +211,9 @@ class _InputPageState extends State<InputPage> {
           ),
           Container(
             margin: EdgeInsets.only(top: 10),
-            color: BottomContainerColor,
+            color: kBottomContainerColor,
             width: double.infinity,
-            height: BottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
