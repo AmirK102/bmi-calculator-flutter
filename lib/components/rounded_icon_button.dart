@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'constant.dart';
+import '../constant.dart';
 
 class RoundedIconButton extends StatelessWidget {
   RoundedIconButton({@required this.icon, @required this.updateWeight});

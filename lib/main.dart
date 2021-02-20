@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'Input_page.dart';
+import 'screens/Input_page.dart';
 
 const mainPrimaryColor = Color(0xFF0A0E21);
 const scaFoldColor = Color(0xFF0A0E21);

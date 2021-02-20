@@ -1,11 +1,13 @@
-import 'package:bmi_calculator/reusable_card.dart';
-import 'package:bmi_calculator/rounded_icon_button.dart';
+import 'file:///C:/Users/Tasnim/project/bmi-calculator-flutter/lib/screens/result_page.dart';
+import 'file:///C:/Users/Tasnim/project/bmi-calculator-flutter/lib/components/reusable_card.dart';
+import 'package:bmi_calculator/components/bottom_large_button.dart';
+import 'package:bmi_calculator/components/rounded_icon_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constant.dart';
-import 'icon_content.dart';
+import '../constant.dart';
+import '../components/icon_content.dart';
 
 enum GenderType { male, female }
 
@@ -209,11 +211,12 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            color: kBottomContainerColor,
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomLargeButton(
+            buttonName: 'CALCULATE',
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultPage()));
+            },
           ),
         ],
       ),

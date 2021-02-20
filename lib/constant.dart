@@ -19,3 +19,22 @@ const kNumberTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+const kBOttomLargeButtonStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+);
+const kCalPageTitle = TextStyle(
+  fontSize: 50.0,
+);
+const kResultTextStyle = TextStyle(
+  color: Colors.green,
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+const KCalculatedResultTextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+const kResultPageBodyStyle = TextStyle(
+  fontSize: 20.0,
+);
