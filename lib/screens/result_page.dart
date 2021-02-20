@@ -4,6 +4,15 @@ import 'package:bmi_calculator/constant.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
+  const ResultPage(
+      {@required this.getResultText,
+      @required this.getResultValue,
+      @required this.getComment});
+
+  final String getResultText;
+  final String getResultValue;
+  final String getComment;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +25,7 @@ class ResultPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(15.0),
+              padding: EdgeInsets.all(20.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
@@ -29,21 +38,21 @@ class ResultPage extends StatelessWidget {
             child: ReusableCard(
               colour: kReusableActiveCardColor,
               cardChild: Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(25.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'NORMAL',
+                      getResultText.toUpperCase(),
                       style: kResultTextStyle,
                     ),
                     Text(
-                      '22.1',
+                      getResultValue,
                       style: KCalculatedResultTextStyle,
                     ),
                     Text(
-                      "You have a normal body weight. Great job!",
+                      getComment,
                       style: kResultPageBodyStyle,
                       textAlign: TextAlign.center,
                     )
